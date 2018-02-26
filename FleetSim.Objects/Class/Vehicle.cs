@@ -25,8 +25,8 @@ namespace FleetSim.Objects
         public virtual int Mileage//virtual so can override w/logic in Cars Class
         { get; set; }
 
-        private string _color;
-        public string Color
+        private byte _color;
+        public byte Color
         {
             get
             {
@@ -54,13 +54,19 @@ namespace FleetSim.Objects
                 _lastServicedMileage = value;
             }
         }
+        private bool _tuneup;
+        public bool Tuneup
+        {
+            get => _tuneup; set => _tuneup = value;
+        }
 
         public void TuneUp(int miles)//implements IVehicle interface method
         {
             LastServicedMileage = miles;
-            Console.WriteLine("Vehicle " + "model year " + "model " +
+            Tuneup = true;
+            /*Console.WriteLine("Vehicle " + "model year " + "model " +
                         "VIN# " + VIN + " tuned up at" + LastServicedMileage
-                             + " Miles" + " on date: ");
+                             + " Miles" + " on date: ");*/
         }
 
         public Guid GetGuid()
@@ -71,12 +77,6 @@ namespace FleetSim.Objects
             return g;
         }
 
-        enum ColorChoice : byte
-        {
-            red = 1,
-            white = 2,
-            blue = 3
-        }
     }
 
 }
